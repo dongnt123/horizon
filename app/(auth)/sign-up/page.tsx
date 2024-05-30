@@ -1,6 +1,9 @@
-const SignUpPage = () => {
+import AuthForm from "../_components/AuthForm";
+
+const SignUpPage = async () => {
+
   return (
-    <div>SignUpPage</div>
+    <AuthForm type="sign-up" />
   )
 }
 
