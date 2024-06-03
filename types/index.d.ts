@@ -5,22 +5,15 @@ declare type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-// ========================================
-
 declare type SignUpProps = {
-  firstName?: string;
-  lastName?: string;
-  address1?: string;
-  city?: string;
-  state?: string;
-  postalCode?: string;
-  dateOfBirth?: string;
-  ssn?: string;
-  email: string;
-  password: string;
-};
-
-declare type LoginUser = {
+  firstName: string;
+  lastName: string;
+  address1: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  dateOfBirth: string;
+  ssn: string;
   email: string;
   password: string;
 };
@@ -60,7 +53,7 @@ declare type Account = {
   type: string;
   subtype: string;
   appwriteItemId: string;
-  sharableId: string;
+  sharaebleId: string;
 };
 
 declare type Transaction = {
@@ -89,27 +82,16 @@ declare type Bank = {
   accessToken: string;
   fundingSourceUrl: string;
   userId: string;
-  sharableId: string;
+  shareableId: string;
 };
 
-declare type AccountTypes =
-  | "depository"
-  | "credit"
-  | "loan "
-  | "investment"
-  | "other";
-
+declare type AccountTypes = "depository" | "credit" | "loan " | "investment" | "other";
 declare type Category = "Food and Drink" | "Travel" | "Transfer";
 
 declare type CategoryCount = {
   name: string;
   count: number;
   totalCount: number;
-};
-
-declare type Receiver = {
-  firstName: string;
-  lastName: string;
 };
 
 declare type TransferParams = {
@@ -156,40 +138,10 @@ declare interface HeaderBoxProps {
   user?: string;
 }
 
-declare interface MobileNavProps {
-  user: User;
-}
-
-declare interface PageHeaderProps {
-  topTitle: string;
-  bottomTitle: string;
-  topDescription: string;
-  bottomDescription: string;
-  connectBank?: boolean;
-}
-
-declare interface PaginationProps {
-  page: number;
-  totalPages: number;
-}
-
 declare interface PlaidLinkProps {
   user: User;
   variant?: "primary" | "ghost";
   dwollaCustomerId?: string;
-}
-
-// declare type User = sdk.Models.Document & {
-//   accountId: string;
-//   email: string;
-//   name: string;
-//   items: string[];
-//   accessToken: string;
-//   image: string;
-// };
-
-declare interface AuthFormProps {
-  type: "sign-in" | "sign-up";
 }
 
 declare interface BankDropdownProps {
@@ -198,29 +150,16 @@ declare interface BankDropdownProps {
   otherStyles?: string;
 }
 
-declare interface BankTabItemProps {
-  account: Account;
-  appwriteItemId?: string;
-}
-
 declare interface TotlaBalanceBoxProps {
   accounts: Account[];
   totalBanks: number;
   totalCurrentBalance: number;
 }
 
-declare interface FooterProps {
-  user: User;
-}
-
 declare interface RightSidebarProps {
   user: User;
   transactions: Transaction[];
   banks: Bank[] & Account[];
-}
-
-declare interface SiderbarProps {
-  user: User;
 }
 
 declare interface RecentTransactionsProps {
@@ -233,43 +172,6 @@ declare interface RecentTransactionsProps {
 declare interface TransactionHistoryTableProps {
   transactions: Transaction[];
   page: number;
-}
-
-declare interface CategoryBadgeProps {
-  category: string;
-}
-
-declare interface TransactionTableProps {
-  transactions: Transaction[];
-}
-
-declare interface CategoryProps {
-  category: CategoryCount;
-}
-
-declare interface DoughnutChartProps {
-  accounts: Account[];
-}
-
-declare interface PaymentTransferFormProps {
-  accounts: Account[];
-}
-
-// Actions
-declare interface getAccountsProps {
-  userId: string;
-}
-
-declare interface getAccountProps {
-  appwriteItemId: string;
-}
-
-declare interface getInstitutionProps {
-  institutionId: string;
-}
-
-declare interface getTransactionsProps {
-  accessToken: string;
 }
 
 declare interface CreateFundingSourceOptions {
@@ -289,41 +191,11 @@ declare interface CreateTransactionProps {
   email: string;
 }
 
-declare interface getTransactionsByBankIdProps {
-  bankId: string;
-}
-
-declare interface SignInProps {
-  email: string;
-  password: string;
-}
-
-declare interface getUserInfoProps {
-  userId: string;
-}
-
-declare interface exchangePublicTokenProps {
-  publicToken: string;
-  user: User;
-}
-
-declare interface createBankAccountProps {
+declare interface CreateBankAccountProps {
   accessToken: string;
   userId: string;
   accountId: string;
   bankId: string;
   fundingSourceUrl: string;
-  sharableId: string;
-}
-
-declare interface getBanksProps {
-  userId: string;
-}
-
-declare interface getBankProps {
-  documentId: string;
-}
-
-declare interface getBankByAccountIdProps {
-  accountId: string;
+  shareableId: string;
 }

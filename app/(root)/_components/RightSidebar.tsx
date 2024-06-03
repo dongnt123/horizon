@@ -2,18 +2,54 @@ import Image from "next/image";
 import Link from "next/link";
 
 import BankCard from "./bank/BankCard";
+import { cn, countTransactionCategories } from "@/lib/utils";
+import { topCategoryStyles } from "@/constants";
+import { Progress } from "@/components/ui/progress";
+
+const Category = ({ category }: { category: CategoryCount }) => {
+  const {
+    bg,
+    circleBg,
+    text: { main, count },
+    progress: { bg: progressBg, indicator },
+    icon,
+  } = topCategoryStyles[category.name as keyof typeof topCategoryStyles] || topCategoryStyles.default;
+
+  return (
+    <div className={cn("gap-[18px] flex p-4 rounded-xl", bg)}>
+      <figure className={cn("flex-center size-10 rounded-full", circleBg)}>
+        <Image src={icon} width={20} height={20} alt={category.name} />
+      </figure>
+      <div className="flex w-full flex-1 flex-col gap-2">
+        <div className="text-14 flex justify-between">
+          <h2 className={cn("font-medium", main)}>{category.name}</h2>
+          <h3 className={cn("font-normal", count)}>{category.count}</h3>
+        </div>
+        <Progress
+          value={(category.count / category.totalCount) * 100}
+          className={cn("h-2 w-full", progressBg)}
+          //@ts-ignore
+          indicatorClassName={cn("h-2 w-full", indicator)}
+        />
+      </div>
+    </div>
+  );
+}
 
 const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
+
+  const categories: CategoryCount[] = countTransactionCategories(transactions);
+
   return (
     <aside className="right-sidebar">
       <section className="flex flex-col pb-8">
         <div className="profile-banner" />
         <div className="profile">
           <div className="profile-img">
-            <span className="text-5xl font-bold text-blue-500">{user.name[0]}</span>
+            <span className="text-5xl font-bold text-blue-500">{user.lastName[0]}</span>
           </div>
           <div className="profile-details">
-            <h1 className="profile-name">{user.name}</h1>
+            <h1 className="profile-name">{user.firstName} {user.lastName}</h1>
             <p className="profile-email">{user.email}</p>
           </div>
         </div>
@@ -39,6 +75,14 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
             )}
           </div>
         )}
+        <div className="mt-10 flex flex-1 flex-col gap-6">
+          <h2 className="header-2">Top Categories</h2>
+          <div className="space-y-5">
+            {categories.map((category) => (
+              <Category key={category.name} category={category} />
+            ))}
+          </div>
+        </div>
       </section>
     </aside>
   )

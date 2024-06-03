@@ -7,8 +7,9 @@ import { cn } from "@/lib/utils";
 
 import { sidebarLinks } from "@/constants";
 import Footer from "./Footer";
+import PlaidLink from "@/app/(auth)/_components/PlaidLink";
 
-const Sidebar = ({ user }: SiderbarProps) => {
+const Sidebar = ({ user }: { user: User }) => {
 
   const pathName = usePathname();
 
@@ -32,6 +33,7 @@ const Sidebar = ({ user }: SiderbarProps) => {
             </Link>
           )
         })}
+        <PlaidLink user={user} />
       </nav>
       <Footer user={user} />
     </section>

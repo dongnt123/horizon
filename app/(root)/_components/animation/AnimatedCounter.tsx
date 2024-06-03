@@ -8,4 +8,4 @@ const AnimatedCounter = ({ amount }: { amount: number }) => {
   )
 }
 
-export default AnimatedCounter
+export default AnimatedCounter;
